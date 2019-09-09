@@ -62,6 +62,7 @@ func listenUDP(addr *net.UDPAddr) string {
 }
 
 func tcpHandler(conn net.Conn) {
+	defer conn.Close()
 	log.Printf("连接上客户端：%s", conn.RemoteAddr().String())
 	_, err := conn.Write([]byte("connection"))
 	if err != nil {
